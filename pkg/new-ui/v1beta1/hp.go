@@ -57,7 +57,7 @@ func (k *KatibUIHandler) FetchHPJobInfo(w http.ResponseWriter, r *http.Request) 
 
 	user, err := IsAuthorized(consts.ActionTypeGet, namespace, consts.PluralExperiment, "", experimentName, experimentv1beta1.SchemeGroupVersion, k.katibClient.GetClient(), r)
 	if user == "" && err != nil {
-		log.Printf("No user provided in kubeflow-userid header.")
+		log.Printf("No user provided in username header.")
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	} else if err != nil {
@@ -97,7 +97,7 @@ func (k *KatibUIHandler) FetchHPJobInfo(w http.ResponseWriter, r *http.Request) 
 
 	_, err = IsAuthorized(consts.ActionTypeList, namespace, consts.PluralTrial, "", "", trialv1beta1.SchemeGroupVersion, k.katibClient.GetClient(), r)
 	if user == "" && err != nil {
-		log.Printf("No user provided in kubeflow-userid header.")
+		log.Printf("No user provided in username header.")
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	} else if err != nil {
@@ -217,7 +217,7 @@ func (k *KatibUIHandler) FetchHPJobTrialInfo(w http.ResponseWriter, r *http.Requ
 
 	user, err := IsAuthorized(consts.ActionTypeList, namespace, consts.PluralTrial, "", trialName, trialv1beta1.SchemeGroupVersion, k.katibClient.GetClient(), r)
 	if user == "" && err != nil {
-		log.Printf("No user provided in kubeflow-userid header.")
+		log.Printf("No user provided in username header.")
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	} else if err != nil {

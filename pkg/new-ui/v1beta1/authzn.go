@@ -16,7 +16,7 @@ import (
 
 // ENV variables
 var (
-	USER_HEADER  = env.GetEnvOrDefault("USERID_HEADER", "kubeflow-userid")
+	USER_HEADER  = env.GetEnvOrDefault("USERID_HEADER", "username")
 	USER_PREFIX  = env.GetEnvOrDefault("USERID_PREFIX", ":")
 	DISABLE_AUTH = env.GetEnvOrDefault("APP_DISABLE_AUTH", "true")
 )
@@ -48,7 +48,7 @@ func IsAuthorized(verb, namespace, resource, subresource, name string, schema sc
 		log.Printf("APP_DISABLE_AUTH set to True. Skipping authentication/authorization checks")
 		return "", nil
 	}
-	// Check if an incoming request is from an authenticated user (kubeflow mode: kubeflow-userid header)
+	// Check if an incoming request is from an authenticated user (kubeflow mode: username header)
 	if r.Header.Get(USER_HEADER) == "" {
 		return "", errors.New("user header not present")
 	}
