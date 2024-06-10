@@ -119,7 +119,7 @@ func (k *KatibUIHandler) CreateExperiment(w http.ResponseWriter, r *http.Request
 
 	user, err := IsAuthorized(consts.ActionTypeCreate, namespace, consts.PluralExperiment, "", experimentName, experimentv1beta1.SchemeGroupVersion, k.katibClient.GetClient(), r)
 	if user == "" && err != nil {
-		log.Printf("No user provided in kubeflow-userid header.")
+		log.Printf("No user provided in username header.")
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	} else if err != nil {
@@ -150,7 +150,7 @@ func (k *KatibUIHandler) FetchExperiments(w http.ResponseWriter, r *http.Request
 
 	user, err := IsAuthorized(consts.ActionTypeList, namespace, consts.PluralExperiment, "", "", experimentv1beta1.SchemeGroupVersion, k.katibClient.GetClient(), r)
 	if user == "" && err != nil {
-		log.Printf("No user provided in kubeflow-userid header.")
+		log.Printf("No user provided in username header.")
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	} else if err != nil {
@@ -200,7 +200,7 @@ func (k *KatibUIHandler) DeleteExperiment(w http.ResponseWriter, r *http.Request
 
 	user, err := IsAuthorized(consts.ActionTypeDelete, namespace, consts.PluralExperiment, "", experimentName, experimentv1beta1.SchemeGroupVersion, k.katibClient.GetClient(), r)
 	if user == "" && err != nil {
-		log.Printf("No user provided in kubeflow-userid header.")
+		log.Printf("No user provided in username header.")
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	} else if err != nil {
@@ -305,7 +305,7 @@ func (k *KatibUIHandler) AddTemplate(w http.ResponseWriter, r *http.Request) {
 
 	user, err := IsAuthorized(consts.ActionTypeCreate, updatedConfigMapNamespace, corev1.ResourceConfigMaps.String(), "", updatedConfigMapName, corev1.SchemeGroupVersion, k.katibClient.GetClient(), r)
 	if user == "" && err != nil {
-		log.Printf("No user provided in kubeflow-userid header.")
+		log.Printf("No user provided in username header.")
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	} else if err != nil {
@@ -356,7 +356,7 @@ func (k *KatibUIHandler) EditTemplate(w http.ResponseWriter, r *http.Request) {
 
 	user, err := IsAuthorized(consts.ActionTypeUpdate, updatedConfigMapNamespace, corev1.ResourceConfigMaps.String(), "", updatedConfigMapName, corev1.SchemeGroupVersion, k.katibClient.GetClient(), r)
 	if user == "" && err != nil {
-		log.Printf("No user provided in kubeflow-userid header.")
+		log.Printf("No user provided in username header.")
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	} else if err != nil {
@@ -404,7 +404,7 @@ func (k *KatibUIHandler) DeleteTemplate(w http.ResponseWriter, r *http.Request) 
 
 	user, err := IsAuthorized(consts.ActionTypeDelete, updatedConfigMapNamespace, corev1.ResourceConfigMaps.String(), "", updatedConfigMapName, corev1.SchemeGroupVersion, k.katibClient.GetClient(), r)
 	if user == "" && err != nil {
-		log.Printf("No user provided in kubeflow-userid header.")
+		log.Printf("No user provided in username header.")
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	} else if err != nil {
@@ -483,7 +483,7 @@ func (k *KatibUIHandler) FetchExperiment(w http.ResponseWriter, r *http.Request)
 
 	user, err := IsAuthorized(consts.ActionTypeGet, namespace, consts.PluralExperiment, "", experimentName, experimentv1beta1.SchemeGroupVersion, k.katibClient.GetClient(), r)
 	if user == "" && err != nil {
-		log.Printf("No user provided in kubeflow-userid header.")
+		log.Printf("No user provided in username header.")
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	} else if err != nil {
@@ -534,7 +534,7 @@ func (k *KatibUIHandler) FetchSuggestion(w http.ResponseWriter, r *http.Request)
 
 	user, err := IsAuthorized(consts.ActionTypeGet, namespace, consts.PluralSuggestion, "", suggestionName, suggestionv1beta1.SchemeGroupVersion, k.katibClient.GetClient(), r)
 	if user == "" && err != nil {
-		log.Printf("No user provided in kubeflow-userid header.")
+		log.Printf("No user provided in username header.")
 		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	} else if err != nil {
